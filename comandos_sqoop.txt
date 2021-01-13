@@ -1,0 +1,47 @@
+bin/sqoop import --connect jdbc:mysql://localhost/IGTI?zeroDateTimeBehavior=convert_To_Null --username root --password igti --table DADOS_GAME -m 1 --bindir /usr/local/sqoop/lib --target-dir /user/igti/DADOS_GAME
+
+
+sequencia:
+
+cd /usr/local/hadoop
+cd tmp
+rm -r (nome da pasta para remover)
+bin/hdfs namenode -format    (formatar hdfs)
+jps (verificar serviços java sendo executados)
+sbin/start-all.sh  (subir serviços hdfs)
+sbin/stop-all.sh   (parar serviços hdfs)  
+jps e conferir 6 serviços java
+cd ..
+cd sqoop  (entrar no sqoop|)
+bin/sqoop import --connect jdbc:mysql://localhost/IGTI?zeroDateTimeBehavior=convert_To_Null --username root --password igti --table DADOS_GAME -m 1 --bindir /usr/local/sqoop/lib --target-dir /user/igti/DADOS_GAME 
+// comando acima para copiar dados de uma tabela mysql para dentro do hdfs
+cd ..
+cd hadoop
+bin/hdfs dfs -ls / (consultar raiz do hdfs)
+bin/hdfs dfs -cat /user/igti/DADOS_GAME/part-m-00000   // abrir arquivo no hdfs
+cd ExemploIGTI
+sudo vim src/ExemploIGTI.java      // editar programa  a para abrir ediçao
+                                                        esc para sair
+                                                        :wq para gravar
+cd..
+ant -f build_ExemploIGTI.xml makejar   // compilar programa
+bin/hadoop jar ExemploIGTI/ExemploIGTI.jar IGTI.ExemploIGTI   // executar programa
+bin/hdfs dfs -ls /user/igti/pastaSaida    //consultar pasta saida
+bin/hdfs dfs -cat /user/igti/pastaSaida/part-00000   //abrir arquivo
+
+
+// outros comandos
+cd usr/local/hadoop
+bin/hdfs dfs -mkdir /nome da pasta   // criar pasta
+bin/hdfs dfs -put /usr/local/hadoop/Dados/teste.txt /igti/ecosistema
+// comando put para copiar recebe dois parametros primeiro endereço onde esta o arquivo e segundo diretorio destino
+bin/hdfs dfs -rmr pasta e nome do arquivo que será excluido //rmr excluir arquivo
+
+admintrativo
+localhost:8088
+localhost:9870
+
+
+
+
+

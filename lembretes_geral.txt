@@ -1,0 +1,123 @@
+modelo mapreduce:
+
+map escalavel o programa tem que ser escalado ou seja se aumentar a demanda o programa trem que melhorar a performace quando inserimos mais nos no cluster
+
+reduce: toleravel a falha ou seja quando um no para por algum motivo o programa redefine a tarefa que parou para outras maquinas sem reiniciar tudo o processo
+
+sistema de arquivos próprio não usa o sistema de arquivo do sistema operacional
+
+site para baixar os dados do nivel de co2:  http://www.co2now.org
+
+hadoop common:
+
+aplicativos comuns
+
+hadoop file system
+
+
+container:
+
+coleçao de recuros fisicos (raw, discos redes etc)
+
+função combine buscar maior valor por chave local
+
+função map:
+
+faz a leitura dos dados
+dividi entre os nos do cluster  (sistema distribuido)
+para cada no do cluster vai dividir as tarefas em varias tarefas (paralelismo) ordena e agrupa por chave e valor 
+executa o código em paralelo e distribuido gera a saida que vai para a proxima função reduce que também vai trabalhar de forma paralela e disribuida também o reduce agrupa os valores por chave e valor ou ex:  101 {50,55,105,250}
+
+formatos mais comuns para entrada de dados  jobs
+
+csv e txt
+
+hdfs conceitos/comandos
+
+tolarante a falhas (proprio sistema de arquivos distribuidos)
+o hadoop htfs replica cada bloco de dados para uma ou mais maquinas (parametro) para garantir o processo caso alguma maquina venha a falhar
+
+pode trabalhar com um grande arquivo ou varios arquivos menores que no final será uma grande massa de dados
+
+alguns comandos hdfs:
+
+help hdfs: hadoop fs -help
+
+formatar hdfs: bin/hdfs namenode - format
+criar diretorios: hdfs dfs -mkdir aquivos_hadoop
+inserir arquivos: hdfs dfs -put meuarquivo.txt /user/hadoop user
+listar arquivos: hdfs dfs -ls
+remover arquivos: hdfs dfs rm <path>
+remover diretorio: hdfs dfs rmr <path>
+
+namenode (mestre)
+datanode (escravos)
+
+interface grafica:
+
+porta 9870
+
+http://localhost:9870 ou 50070
+
+interface jobs
+8088
+
+http://localhost:8088
+
+hive: para criaçao e gerenciamento de datawarehouse
+sqoop: faz a importaçao/exportaçao de sgdbs, dw e arquivos semiestruturados para o ecossitema hadoop hdfs
+sqoop faz o processo de etl tambem
+faz exportaçao/importaçoes incrementais
+
+apache hadoop  é bem semelhante ao java
+
+metodo main
+classe mapper
+classe reducer/combiner
+
+metodo configure é executado apenas uma vez antes muito utilizado para setar alguma informaçao e executado ante de mapper e reducer
+
+metodo close() nao possui parametros e executado apenas uma vez ao final de todas es execuçoes, para fechar o processamento é opcional
+
+metodo combine pre reducer utilizado para reduzir o trafego de informaçoes para o reduce
+
+depuraçao jobs:
+
+melhor fazer a depuraçao local , depurar no cluster é muito dificil
+- registro de logs
+-counters
+-plugins  (buscar na internet netbins)
+
+algoritmos interaçao:
+
+nao é ideal para iteraçao por cauda do overhead já que os dados nçao ficam em memoria e sim em discos 
+
+Apache Spark
+
+processamento distrubuido
+iterações em memoria (diferente do mapdreduce que grava en disco)
+apis java,python, R e escala
+shel interativo para testar o código
+
+caracteristicas/arquitetura Apache Spark
+
+spark program (programa)
+cluster manager (gerenciado do cluster)
+worker node (estações)
+
+Rdds:
+
+conjunto de dados distribuidos tolerantes a falhas
+coleção de objetos imutáveis (primeiro rdd, para alterar tem que fazer copia para outro rdd)
+
+rdd>acões
+
+rdd pode ter varias partições
+
+rdd podemos fazer transformação e ações
+
+
+
+
+
+

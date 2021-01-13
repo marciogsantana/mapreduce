@@ -1,0 +1,49 @@
+mysql:
+
+mysql -u root -p
+use IGTI
+select * from DADOS_GAMES
+
+HDFS:
+
+formataçao hdfs
+
+cd .. voltar um diretorio
+cd /usr/local/hadoop
+rm -r dfs  // comando para pagar pasta dfs dentro da pasta tmp
+bin/hdfs namenode -format // formatar hdfs   (aplicativo dentro da pasta bin
+
+verificar/inicializar serviços hadoop
+
+jps // verificar serviços java
+sbin/stop-all.sh // para serviços
+sbin/start-all.sh // inicializar serviços hadoop (aplicativos estao na pasta sbin)
+
+comandos geral:
+
+bin/hdfs dfs -ls / // consultar diretorio raiz hdfs
+
+importar dados:
+
+acessar diretorio sqoop
+bin/sqoop import --connect jdbc:mysql://localhost/IGTI?zeroDateTimeBehavior=convert_To_Null --username root --password igti --table DADOS_GAME -m 1 --bindir /usr/local/sqoop/lib --target-dir /user/igti/DADOS_GAME
+
+visualizar arquivo
+
+bin/hdfs dfs -cat /user/igti/DADOS_GAME/part -m 00000
+
+abrir arquivo:
+
+sudo vim src/ExemploIGTI.java
+
+compilando jar
+
+ant -f build_ExemploIGTI.xml makejar
+
+a para editar
+esc : wq para gravar
+
+executando
+
+bin/hadoop jar ExemploIGTI/ExemploIGTI.jar IGTI.ExemploIGTI
+
